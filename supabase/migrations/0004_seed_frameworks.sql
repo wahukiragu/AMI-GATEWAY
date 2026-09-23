@@ -30,7 +30,7 @@ values
    'A visitor asks how to book a group or where to buy a garment.',
    'Message, email or a logged conversation.',
    array['Enquiry received','Asked for contact','Invited to a follow-up meeting','Requested a sample or demo','Other']),
-   ('00000000-0000-4000-8000-000000000001', 3, 'Consumption', 'Value changed hands',
+  ('00000000-0000-4000-8000-000000000001', 3, 'Consumption', 'Value changed hands',
    'Someone gives something in return for what they discovered — money, a trade, or a swap of goods and skills.',
    'A guest buys a drum, trades a craft item for a ticket, or barters a skill for a workshop place.',
    'Receipt, payment record, or a description of what was exchanged.',
@@ -65,5 +65,5 @@ insert into public.sdg_goals (no, name, featured) values
   (16, 'Peace, justice and strong institutions', false),
   (17, 'Partnerships for the goals', true);
 
-insert into public.editions (name, year, venue, is_current)
-values ('AMI Festival 2026', 2026, 'University of Venda', true);
+insert into public.editions (name, year, venue, starts_on, ends_on, is_current)
+values ('AMI African Arts & Cultural Festival 2026', 2026, 'University of Venda', '2026-09-23', '2026-09-24', true);
