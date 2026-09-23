@@ -21,8 +21,14 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
   return (
     <main className="mx-auto max-w-md px-5 py-14">
       <h1 className="text-3xl">Log in or get started</h1>
-      <p className="mb-6 mt-2 text-navy-500">No password needed. We email you a short code.</p>
-      <Flash error={sp.error === 'link' ? 'That sign-in link has expired. Please ask for a new code.' : undefined} />
+      <p className="mb-6 mt-2 text-navy-500">Sign in with Google, or with a short code sent to your email. No password needed.</p>
+      <Flash
+        error={
+          sp.error === 'link' ? 'That sign-in link has expired. Please ask for a new code.'
+          : sp.error === 'oauth' ? 'Google sign-in did not complete. Please try again, or use the email code.'
+          : undefined
+        }
+      />
       <div className="card">
         <LoginForm next={next} />
       </div>
