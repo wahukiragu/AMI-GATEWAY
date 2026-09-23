@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { StageBars } from './StageBars';
 import { acknowledgeAction } from '@/app/connections/actions';
 import { VERIFICATION_LABEL } from '@/lib/framework';
+import { waLink } from '@/lib/whatsapp';
 import type { FrameworkStage, MyConnection } from '@/lib/types';
 
 function money(c: MyConnection) {
@@ -17,6 +18,19 @@ export function ackTag(c: MyConnection) {
   if (c.ack_status === 'confirmed') return <span className="tag tag-navy">Confirmed by {c.other_name}</span>;
   if (c.ack_status === 'disputed') return <span className="tag tag-maroon">Not quite right</span>;
   return <span className="tag tag-soft">Waiting for {c.other_name} to confirm</span>;
+}
+
+function WhatsAppLink({ c }: { c: MyConnection }) {
+  if (!c.other_phone) return null;
+  const message = `Hi ${c.other_name}, this is regarding our connection at ${c.edition_name ?? 'the AMI Festival'}.`;
+  return (
+    <a href={waLink(c.other_phone, message)} target="_blank" rel="noreferrer" className="btn btn-ghost btn-sm gap-2 border-[#25D366]/40 text-[#128C4A]">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#25D366" aria-hidden="true">
+        <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.42-1.34a9.86 9.86 0 0 0 4.62 1.16h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm5.77 14.11c-.24.68-1.4 1.31-1.93 1.36-.5.05-.99.24-3.33-.7-2.82-1.14-4.62-4.01-4.76-4.2-.14-.19-1.14-1.51-1.14-2.89s.72-2.05.98-2.33c.24-.26.53-.32.7-.32h.5c.16 0 .38-.03.58.44.24.57.81 1.99.88 2.13.07.14.11.31.02.5-.09.19-.14.31-.28.47-.14.16-.29.36-.42.48-.14.14-.29.29-.12.57.16.28.72 1.19 1.55 1.93 1.07.95 1.97 1.24 2.25 1.38.28.14.44.12.6-.07.16-.19.68-.79.86-1.06.19-.28.37-.23.62-.14.26.09 1.63.77 1.9.91.28.14.46.21.53.33.07.12.07.68-.17 1.36Z" />
+      </svg>
+      Message on WhatsApp
+    </a>
+  );
 }
 
 export function ConnectionCard({ c, stages }: { c: MyConnection; stages: FrameworkStage[] }) {
@@ -49,6 +63,8 @@ export function ConnectionCard({ c, stages }: { c: MyConnection; stages: Framewo
         <p className="mt-2 text-sm text-navy-500">Next step: {c.next_step}{c.remind_on ? ` · remind me ${c.remind_on}` : ''}</p>
       ) : null}
       {c.role === 'counterparty' ? <p className="mt-2 text-sm text-navy-500">Logged by {c.other_name}.</p> : null}
+
+      {c.role === 'logger' && c.other_phone ? <div className="mt-3"><WhatsAppLink c={c} /></div> : null}
 
       {waiting ? (
         <form action={acknowledgeAction} className="mt-4 rounded-xl bg-sand p-4">
