@@ -132,7 +132,8 @@ export function NewConnectionForm({ stages, sdgs, currencies, countries }: Props
               </div>
               <div>
                 <label htmlFor="new_phone" className="label">Their phone <span className="hint font-normal">Optional</span></label>
-                <input id="new_phone" name="new_phone" type="tel" className="input" />
+                <input id="new_phone" name="new_phone" type="tel" className="input" placeholder="+27 82 000 1111" />
+                <p className="hint mt-1">Include the country code (e.g. +27) so you can message them on WhatsApp later.</p>
               </div>
             </div>
             <button type="button" className="btn btn-ghost btn-sm mt-4" onClick={() => setMode('search')}>Search the list instead</button>
