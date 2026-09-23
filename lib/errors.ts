@@ -17,6 +17,8 @@ const MESSAGES: Record<string, string> = {
   invalid_currency: 'Choose a currency.',
   payment_status_required: 'Say whether the amount was paid or only agreed.',
   too_many_sdgs: 'Choose up to six goals.',
+  start_date_required: 'Please choose a start date.',
+  end_before_start: 'The end date cannot be before the start date.',
   stage_cannot_go_back: 'A connection can stay at its stage or move forward, not back.',
   not_found: 'That record was not found, or it is not yours to change.',
   not_claimable: 'That profile cannot be claimed.',
