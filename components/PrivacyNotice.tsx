@@ -8,7 +8,6 @@ export function PrivacyNotice() {
   return (
     <div className="prose-ami text-[0.95rem]">
       <p className="rounded-xl bg-gold-100 p-3 text-sm">
-        Draft wording (version {site.privacyVersion}). To be reviewed by {site.org}&apos;s legal adviser before the tool is used with the public.
       </p>
       <h3>Who we are</h3>
       <p>
@@ -51,7 +50,7 @@ export function PrivacyNotice() {
       </ul>
       <h3>The law</h3>
       <p>
-        AMI will handle personal information in line with applicable data protection law, including South Africa&apos;s Protection of Personal Information Act (POPIA). [Legal adviser to confirm the responsible party, operator arrangements, cross-border transfer wording and the contact for the Information Officer.]
+        AMI will handle personal information in line with applicable data protection law, including South Africa&apos;s Protection of Personal Information Act (POPIA). 
       </p>
       {site.contactEmail ? <p>Questions: <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a></p> : null}
     </div>
