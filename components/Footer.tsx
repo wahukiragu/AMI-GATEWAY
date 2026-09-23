@@ -1,7 +1,15 @@
 import Link from 'next/link';
 import { site } from '@/lib/config';
+import { getFramework } from '@/lib/framework-data';
+import { formatEditionDates } from '@/lib/dates';
 
-export function Footer() {
+export async function Footer() {
+  const framework = await getFramework();
+  const edition = framework.edition;
+  const eventName = edition?.name ?? site.event;
+  const venue = edition?.venue ?? site.venue;
+  const dates = edition ? formatEditionDates(edition.starts_on, edition.ends_on) : '';
+
   return (
     <footer className="mt-16 border-t border-navy/10 bg-sand">
       <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3 px-5 py-6 text-sm text-navy-500">
@@ -9,7 +17,7 @@ export function Footer() {
           <a href="https://ami.univen.ac.za/" target="_blank" rel="noreferrer" className="underline">
             {site.org}
           </a>{' '}
-          · {site.event}, {site.venue}
+          · {eventName}{dates ? `, ${dates}` : ''}{venue ? `, ${venue}` : ''}
         </p>
         <nav className="flex gap-5" aria-label="Footer">
           <Link href="/privacy" className="underline">Privacy notice</Link>
