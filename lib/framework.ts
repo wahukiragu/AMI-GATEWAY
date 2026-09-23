@@ -55,7 +55,6 @@ export const DEFAULT_STAGES: FrameworkStage[] = [
     event_types: ['Enquiry received', 'Asked for contact', 'Invited to a follow-up meeting', 'Requested a sample or demo', 'Other'],
   },
   {
-     {
     stage_no: 3, name: 'Consumption', short_label: 'Value changed hands',
     meaning: 'Someone gives something in return for what they discovered — money, a trade, or a swap of goods and skills.',
     example: 'A guest buys a drum, trades a craft item for a ticket, or barters a skill for a workshop place.',
