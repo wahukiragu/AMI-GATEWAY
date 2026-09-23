@@ -28,7 +28,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ n
           <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-maroon">{site.event} · {site.venue}</p>
           <h1 className="max-w-3xl text-4xl leading-[1.1] sm:text-6xl">Turn festival conversations into lasting connections.</h1>
           <p className="mt-5 max-w-2xl text-lg">
-            {site.name} is a simple way to record the meaningful connections you make at the festival: who you met, what came of it, and whether it led to a sale, a booking or a partnership.
+            {site.name} is a simple way to record the meaningful connections you make at the festival: who you met, what came of it, and whether it leads to a working relationship, or a partnership.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link href={cta.href} className="btn btn-primary">{cta.label}</Link>
@@ -44,11 +44,11 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ n
         </div>
         <div>
           <h2 className="mb-2 text-xl">What AMI does with it</h2>
-          <p>AMI adds up the results, without names, to show funders how culture contributes to jobs, trade and the Sustainable Development Goals.</p>
+          <p>AMI uses this information to provide a broader picture of how cultural activity contributes to  sustained connections, better livelihoods, and even trade towards the achievement of the  Sustainable Development Goals.</p>
         </div>
         <div>
           <h2 className="mb-2 text-xl">What you get</h2>
-          <p>A private record of your connections, an emailed summary and reminders, and a way to see how each one grows.</p>
+          <p>A private record of your connections, an emailed summary and reminders, and a way to see how each relationship develops over time.</p>
         </div>
       </section>
 
