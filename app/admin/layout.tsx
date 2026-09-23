@@ -18,6 +18,9 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           <Link href="/admin/connections" className={item}>Connections</Link>
           <Link href="/admin/claims" className={item}>Claims{count ? ` (${count})` : ''}</Link>
           <Link href="/admin/report" className={item}>Report and evidence pack</Link>
+          <Link href="/admin/editions" className={item}>Editions</Link>
+          <Link href="/admin/flyer" className={item}>Flyer</Link>
+          <Link href="/wall" className={item} target="_blank" rel="noreferrer">Live wall ↗</Link>
           <Link href="/admin/framework" className={item}>Framework</Link>
         </nav>
       </div>
