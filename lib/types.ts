@@ -54,6 +54,8 @@ export interface Edition {
   name: string;
   year: number;
   venue: string | null;
+  starts_on: string | null;
+  ends_on: string | null;
   is_current: boolean;
 }
 
@@ -65,6 +67,8 @@ export interface MyConnection {
   other_name: string;
   other_country: string | null;
   other_status: string | null;
+  /** Only populated when the viewer is the one who originally supplied this number. */
+  other_phone: string | null;
   stage_no: number;
   event_type: string;
   summary: string;
