@@ -4,6 +4,7 @@ import { StageBars } from '@/components/StageBars';
 import { getFramework } from '@/lib/framework-data';
 import { getMyParticipant, getUser } from '@/lib/auth';
 import { site } from '@/lib/config';
+import { editionStatus, formatEditionDates } from '@/lib/dates';
 import { Flash } from '@/components/Flash';
 
 export default async function Home({ searchParams }: { searchParams: Promise<{ notice?: string }> }) {
@@ -19,16 +20,25 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ n
   }
   const cta = !user ? { href: '/login', label: 'Get started' } : registered ? { href: '/connections/new', label: 'Log a connection' } : { href: '/register', label: 'Continue registering' };
 
+  const edition = framework.edition;
+  const eventName = edition?.name ?? site.event;
+  const venue = edition?.venue ?? site.venue;
+  const dates = edition ? formatEditionDates(edition.starts_on, edition.ends_on) : '';
+  const status = edition ? editionStatus(edition.starts_on, edition.ends_on) : null;
+
   return (
     <main>
       {sp.notice ? <div className="mx-auto max-w-5xl px-5 pt-6"><Flash notice={sp.notice} /></div> : null}
       <section className="relative overflow-hidden bg-sand">
         <BarsStrip className="pointer-events-none absolute inset-x-0 bottom-0 h-40 w-full opacity-90 sm:h-56" />
         <div className="relative mx-auto max-w-5xl px-5 pb-52 pt-14 sm:pb-64 sm:pt-20">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-maroon">{site.event} · {site.venue}</p>
+          <p className="mb-3 flex flex-wrap items-center gap-2 text-sm font-semibold uppercase tracking-wide text-maroon">
+            <span>{eventName}{dates ? ` · ${dates}` : ''}{venue ? ` · ${venue}` : ''}</span>
+            {status && status.phase !== 'unknown' ? <span className="tag tag-navy normal-case tracking-normal">{status.label}</span> : null}
+          </p>
           <h1 className="max-w-3xl text-4xl leading-[1.1] sm:text-6xl">Turn festival conversations into lasting connections.</h1>
           <p className="mt-5 max-w-2xl text-lg">
-            {site.name} is a simple way to record the meaningful connections you make at the festival: who you met, what came of it, and whether it leads to a working relationship, or a partnership.
+            {site.name} is a simple way to record the meaningful connections you make at the festival: who you met, what came of it, and whether it led to a sale, a booking or a partnership.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link href={cta.href} className="btn btn-primary">{cta.label}</Link>
@@ -44,11 +54,11 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ n
         </div>
         <div>
           <h2 className="mb-2 text-xl">What AMI does with it</h2>
-          <p>AMI uses this information to provide a broader picture of how cultural activity contributes to  sustained connections, better livelihoods, and even trade towards the achievement of the  Sustainable Development Goals.</p>
+          <p>AMI adds up the results, without names, to show funders how culture contributes to jobs, trade and the Sustainable Development Goals.</p>
         </div>
         <div>
           <h2 className="mb-2 text-xl">What you get</h2>
-          <p>A private record of your connections, an emailed summary and reminders, and a way to see how each relationship develops over time.</p>
+          <p>A private record of your connections, an emailed summary and reminders, and a way to see how each one grows.</p>
         </div>
       </section>
 
